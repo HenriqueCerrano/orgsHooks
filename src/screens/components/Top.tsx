@@ -1,15 +1,29 @@
 import React from "react";
 import { Image, StyleSheet, Text, View } from "react-native";
 
-import logo from "../../'assets/logo.png"
+import {loadTop} from "../../services/loadData";
+import logo from "../../assets/logo.png";
 
-export default function Top() {
-    return <View style={styles.top}>
-        <Image source={logo} style={styles.image}/>
-        <Text style={styles.welcome}>Olá Henrique</Text>
-        <Text style={styles.capition}>Encontre os melhores produtores</Text>
-    </View>
+class Top extends React.Component {
+    updateTop(){
+        const back = loadTop();
+        console.log(back);
+    }
+
+    componentDidCatch() {
+        this.updateTop();
+        
+    }
+    render() {
+        return <View style={styles.top}>
+            <Image source={logo} style={styles.image} />
+            <Text style={styles.welcome}>Olá Henrique</Text>
+            <Text style={styles.capition}>Encontre os melhores produtores</Text>
+        </View>
+    }
 }
+
+export default Top;
 
 const styles = StyleSheet.create({
     top:{
